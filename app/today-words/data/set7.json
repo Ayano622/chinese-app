@@ -1,0 +1,13 @@
+[
+  { "hanzi": "天气", "pinyin": "tiān qì", "meaning": "天気" },
+  { "hanzi": "太阳", "pinyin": "tài yáng", "meaning": "太陽" },
+  { "hanzi": "雨", "pinyin": "yǔ", "meaning": "雨" },
+  { "hanzi": "雪", "pinyin": "xuě", "meaning": "雪" },
+  { "hanzi": "风", "pinyin": "fēng", "meaning": "風" },
+  { "hanzi": "冷", "pinyin": "lěng", "meaning": "寒い" },
+  { "hanzi": "热", "pinyin": "rè", "meaning": "暑い" },
+  { "hanzi": "山", "pinyin": "shān", "meaning": "山" },
+  { "hanzi": "海", "pinyin": "hǎi", "meaning": "海" },
+  { "hanzi": "树", "pinyin": "shù", "meaning": "木" }
+]
+

@@ -1,0 +1,13 @@
+[
+  { "hanzi": "车", "pinyin": "chē", "meaning": "車" },
+  { "hanzi": "地铁", "pinyin": "dì tiě", "meaning": "地下鉄" },
+  { "hanzi": "公交车", "pinyin": "gōng jiāo chē", "meaning": "バス" },
+  { "hanzi": "火车", "pinyin": "huǒ chē", "meaning": "電車" },
+  { "hanzi": "飞机", "pinyin": "fēi jī", "meaning": "飛行機" },
+  { "hanzi": "出租车", "pinyin": "chū zū chē", "meaning": "タクシー" },
+  { "hanzi": "船", "pinyin": "chuán", "meaning": "船" },
+  { "hanzi": "走路", "pinyin": "zǒu lù", "meaning": "歩く" },
+  { "hanzi": "骑车", "pinyin": "qí chē", "meaning": "自転車に乗る" },
+  { "hanzi": "交通", "pinyin": "jiāo tōng", "meaning": "交通" }
+]
+

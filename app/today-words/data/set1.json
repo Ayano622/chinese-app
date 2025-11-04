@@ -1,0 +1,12 @@
+[
+  { "hanzi": "你好", "pinyin": "nǐ hǎo", "meaning": "こんにちは" },
+  { "hanzi": "谢谢", "pinyin": "xiè xie", "meaning": "ありがとう" },
+  { "hanzi": "不客气", "pinyin": "bú kè qi", "meaning": "どういたしまして" },
+  { "hanzi": "对不起", "pinyin": "duì bu qǐ", "meaning": "ごめんなさい" },
+  { "hanzi": "没关系", "pinyin": "méi guān xi", "meaning": "大丈夫" },
+  { "hanzi": "再见", "pinyin": "zài jiàn", "meaning": "さようなら" },
+  { "hanzi": "请", "pinyin": "qǐng", "meaning": "どうぞ／〜してください" },
+  { "hanzi": "初次见面", "pinyin": "chū cì jiàn miàn", "meaning": "はじめまして" },
+  { "hanzi": "好久不见", "pinyin": "hǎo jiǔ bú jiàn", "meaning": "お久しぶり" },
+  { "hanzi": "没事", "pinyin": "méi shì", "meaning": "気にしないで" }
+]

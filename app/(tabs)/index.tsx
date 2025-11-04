@@ -1,98 +1,117 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { ScrollView, View, StyleSheet, Pressable } from "react-native";
+import { ThemedText } from "@/components/themed-text";
+import { ThemedView } from "@/components/themed-view";
+import { useRouter } from "expo-router";
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+  const router = useRouter();
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
+  // 仮データ：ランダムで「今日の一問」or「コラム」を表示
+  const dailyTopic = {
+    type: "quiz", // "quiz" or "column"
+    question: "「加油」の意味は？",
+    answer: "がんばって！",
+  };
+
+  return (
+    <ScrollView style={styles.container}>
+      <ThemedView style={styles.header}>
+        <ThemedText type="title">🇨🇳 Chinese Practice</ThemedText>
+        <ThemedText>今日も少しずつ、成長しよう。</ThemedText>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+
+      <View style={styles.progress}>
+        <ThemedText>今日の学習進捗：3 / 10 単語</ThemedText>
+        <View style={styles.progressBar}>
+          <View style={[styles.progressInner, { width: "30%" }]} />
+        </View>
+      </View>
+
+      {/* === 今日のトピック === */}
+      {/* <View style={styles.topicContainer}>
+        <ThemedText style={styles.topicTitle}>🧠 今日のトピック</ThemedText>
+        {dailyTopic.type === "quiz" ? (
+          <>
+            <ThemedText style={styles.topicQuestion}>
+              {dailyTopic.question}
+            </ThemedText>
+            <ThemedText style={styles.topicAnswer}>
+              💬 {dailyTopic.answer}
+            </ThemedText>
+          </>
+        ) : (
+          <ThemedText style={styles.topicColumn}>
+            今日のひとこと：「吃了吗？」＝「ご飯食べた？」（挨拶）
+          </ThemedText>
+        )}
+      </View> */}
+
+      {/* 今日の単語を学ぶ */}
+      <Pressable
+        style={styles.startButton}
+        onPress={() => router.push("/today-words")}
+      >
+        <ThemedText style={styles.startText}>▶ 今日の単語を学ぶ</ThemedText>
+      </Pressable>
+
+      {/* 自作単語帳へ */}
+      <Pressable
+        style={styles.customButton}
+        onPress={() => router.push("/my-words")}
+      >
+        <ThemedText style={styles.customText}>📚 自作単語帳へ</ThemedText>
+      </Pressable>
+
+      <View style={styles.footer}>
+        <ThemedText style={styles.footerLink}>📖 復習する</ThemedText>
+        <ThemedText style={styles.footerLink}>⭐ お気に入り</ThemedText>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: { flex: 1, backgroundColor: "#fff", padding: 20 },
+  header: { alignItems: "center", marginVertical: 30 },
+  topicContainer: {
+    backgroundColor: "#f9f9f9",
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 20,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  topicTitle: { fontWeight: "bold", marginBottom: 8 },
+  topicQuestion: { fontSize: 16, marginBottom: 4 },
+  topicAnswer: { color: "#ff5555", fontWeight: "bold" },
+  topicColumn: { fontSize: 15, lineHeight: 22 },
+  progress: { marginVertical: 20 },
+  progressBar: {
+    height: 8,
+    backgroundColor: "#eee",
+    borderRadius: 4,
+    overflow: "hidden",
+    marginTop: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  progressInner: {
+    height: "100%",
+    backgroundColor: "#ff5555",
   },
+  startButton: {
+    backgroundColor: "#ff5555",
+    padding: 16,
+    borderRadius: 12,
+    alignItems: "center",
+    marginVertical: 10,
+  },
+  startText: { color: "#fff", fontWeight: "bold" },
+  customButton: {
+    borderColor: "#ff5555",
+    borderWidth: 2,
+    padding: 16,
+    borderRadius: 12,
+    alignItems: "center",
+    marginVertical: 10,
+  },
+  customText: { color: "#ff5555", fontWeight: "bold" },
+  footer: { flexDirection: "row", justifyContent: "space-around", marginTop: 30 },
+  footerLink: { color: "#888" },
 });
